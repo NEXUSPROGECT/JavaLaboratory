@@ -1,13 +1,16 @@
-<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
-<!DOCTYPE html>
+<%@ page contentType="text/html; charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>JSP - Hello World</title>
+    <link rel="stylesheet" type="text/css"
+          href="style.css">
+    <title>Главная страница</title>
 </head>
 <body>
-<h1><%= "Hello World!" %>
-</h1>
-<br/>
-<a href="hello-servlet">Hello Servlet</a>
+<h2>Добро пожаловать!</h2>
+<p>Выберите раздел для просмотра данных:</p>
+<ul>
+    <li><a href="products">Продукты</a></li>
+    <li><a href="manufacturers">Производители</a></li>
+</ul>
 </body>
 </html>
