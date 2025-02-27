@@ -4,6 +4,7 @@ package com.example.testee0.domain;
  * Класс "Производитель"
  */
 public class Manufacturer {
+    private int id;
     private String name; // Название
     private String country; // Страна
     private String contactPerson; // Контактное лицо
@@ -11,12 +12,16 @@ public class Manufacturer {
 
     public Manufacturer() {}
 
-    public Manufacturer(String name, String country, String contactPerson, String phone) {
+    public Manufacturer(int id, String name, String country, String contactPerson, String phone) {
+        this.id = id;
         this.name = name;
         this.country = country;
         this.contactPerson = contactPerson;
         this.phone = phone;
     }
+
+    public int getId() {return id;}
+    public void setId(int id) {this.id = id;}
 
     public String getName() { return name; }
     public void setName(String name) { this.name = name; }

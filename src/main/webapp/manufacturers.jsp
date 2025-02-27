@@ -12,6 +12,7 @@
 <h2>Список производителей</h2>
 <table>
     <tr>
+        <th>ID</th>
         <th>Название</th>
         <th>Страна</th>
         <th>Контактное лицо</th>
@@ -22,6 +23,7 @@
         for (Manufacturer manufacturer : manufacturers) {
     %>
     <tr>
+        <td><%= manufacturer.getId() %></td>
         <td><%= manufacturer.getName() %></td>
         <td><%= manufacturer.getCountry() %></td>
         <td><%= manufacturer.getContactPerson() %></td>

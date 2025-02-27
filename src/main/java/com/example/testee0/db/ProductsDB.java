@@ -1,53 +1,51 @@
 package com.example.testee0.db;
 
-import com.example.testee0.domain.Manufacturer;
+import com.example.testee0.domain.Product;
 
 import java.sql.*;
 import java.util.ArrayList;
 
-public class ManufacturerDB {
+public class ProductsDB {
     private static String url = "jdbc:mysql://localhost/prod_and_manuf";
     private static String username = "user";
     private static String password = "1234";
 
-    public static ArrayList<Manufacturer> select() {
+    public static ArrayList<Product> select() {
 
 
-        ArrayList<Manufacturer> manufacturers = new ArrayList<Manufacturer>();
+        ArrayList<Product> products = new ArrayList<Product>();
         try {
             Class.forName("com.mysql.cj.jdbc.Driver").getDeclaredConstructor().newInstance();
             try (Connection conn = DriverManager.getConnection(url, username, password)) {
                 Statement statement = conn.createStatement();
-                ResultSet resultSet = statement.executeQuery("SELECT * FROM manufacturer");
+                ResultSet resultSet = statement.executeQuery("SELECT * FROM products");
                 while (resultSet.next()) {
                     int id = resultSet.getInt(1);
                     String name = resultSet.getString(2);
-                    String country = resultSet.getString(3);
-                    String contactPerson = resultSet.getString(4);
-                    String phone = resultSet.getString(5);
-                    Manufacturer manufacturer = new Manufacturer(id, name, country, contactPerson, phone);
-                    manufacturers.add(manufacturer);
+                    String size = resultSet.getString(3);
+                    double weight = resultSet.getDouble(4);
+                    Product product = new Product(id, name, size, weight);
+                    products.add(product);
                 }
             }
         } catch (Exception ex) {
             System.out.println(ex);
         }
-        return manufacturers;
+        return products;
 
     }
 
-    public static int insert(Manufacturer manufacturer) {
+    public static int insert(Product product) {
 
         try {
             Class.forName("com.mysql.cj.jdbc.Driver").getDeclaredConstructor().newInstance();
             try (Connection conn = DriverManager.getConnection(url, username, password)) {
 
-                String sql = "INSERT INTO manufacturer (name, country, contactPerson, phone) Values (?, ?)";
+                String sql = "INSERT INTO products (name, size, weight) Values (?, ?)";
                 try (PreparedStatement preparedStatement = conn.prepareStatement(sql)) {
-                    preparedStatement.setString(1, manufacturer.getName());
-                    preparedStatement.setString(2, manufacturer.getCountry());
-                    preparedStatement.setString(3, manufacturer.getContactPerson());
-                    preparedStatement.setString(4, manufacturer.getPhone());
+                    preparedStatement.setString(1, product.getName());
+                    preparedStatement.setString(2, product.getSize());
+                    preparedStatement.setDouble(3, product.getWeight());
                     return preparedStatement.executeUpdate();
                 }
             }
@@ -57,19 +55,18 @@ public class ManufacturerDB {
         return 0;
     }
 
-    public static int update(Manufacturer manufacturer) {
+    public static int update(Product product) {
 
         try {
             Class.forName("com.mysql.cj.jdbc.Driver").getDeclaredConstructor().newInstance();
             try (Connection conn = DriverManager.getConnection(url, username, password)) {
 
-                String sql = "UPDATE manufacturer SET name = ?, country = ?, contactPerson = ?, phone = ? WHERE id = ?";
+                String sql = "UPDATE products SET name = ?, size = ?, weight = ? WHERE id = ?";
                 try (PreparedStatement preparedStatement = conn.prepareStatement(sql)) {
-                    preparedStatement.setString(1, manufacturer.getName());
-                    preparedStatement.setString(2, manufacturer.getCountry());
-                    preparedStatement.setString(3, manufacturer.getContactPerson());
-                    preparedStatement.setString(4, manufacturer.getPhone());
-                    preparedStatement.setInt(5, manufacturer.getId());
+                    preparedStatement.setString(1, product.getName());
+                    preparedStatement.setString(2, product.getSize());
+                    preparedStatement.setDouble(3, product.getWeight());
+                    preparedStatement.setInt(4, product.getId());
                     return preparedStatement.executeUpdate();
                 }
             }
@@ -85,7 +82,7 @@ public class ManufacturerDB {
             Class.forName("com.mysql.cj.jdbc.Driver").getDeclaredConstructor().newInstance();
             try (Connection conn = DriverManager.getConnection(url, username, password)) {
 
-                String sql = "DELETE FROM manufacturer WHERE id = ?";
+                String sql = "DELETE FROM products WHERE id = ?";
                 try (PreparedStatement preparedStatement = conn.prepareStatement(sql)) {
                     preparedStatement.setInt(1, id);
 

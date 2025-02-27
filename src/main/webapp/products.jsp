@@ -12,6 +12,7 @@
 <h2>Список товаров</h2>
 <table>
   <tr>
+    <th>ID</th>
     <th>Наименование</th>
     <th>Размер</th>
     <th>Вес (кг)</th>
@@ -21,6 +22,7 @@
     for (Product product : products) {
   %>
   <tr>
+    <td><%= product.getId()%></td>
     <td><%= product.getName() %></td>
     <td><%= product.getSize() %></td>
     <td><%= product.getWeight() %></td>
