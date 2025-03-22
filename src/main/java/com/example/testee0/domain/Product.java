@@ -18,6 +18,12 @@ public class Product {
         this.weight = weight;
     }
 
+    public Product(String name, String size, double weight) {
+        this.name = name;
+        this.size = size;
+        this.weight = weight;
+    }
+
     public int getId() { return id; }
     public void setId(int id) { this.id = id; }
 

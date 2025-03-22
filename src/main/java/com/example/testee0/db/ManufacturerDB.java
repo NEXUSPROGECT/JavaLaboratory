@@ -42,7 +42,7 @@ public class ManufacturerDB {
             Class.forName("com.mysql.cj.jdbc.Driver").getDeclaredConstructor().newInstance();
             try (Connection conn = DriverManager.getConnection(url, username, password)) {
 
-                String sql = "INSERT INTO manufacturer (name, country, contactPerson, phone) Values (?, ?)";
+                String sql = "INSERT INTO manufacturer (name, country, contactPerson, phone) Values (?, ?, ?, ?)";
                 try (PreparedStatement preparedStatement = conn.prepareStatement(sql)) {
                     preparedStatement.setString(1, manufacturer.getName());
                     preparedStatement.setString(2, manufacturer.getCountry());

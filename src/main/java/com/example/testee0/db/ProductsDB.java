@@ -41,7 +41,7 @@ public class ProductsDB {
             Class.forName("com.mysql.cj.jdbc.Driver").getDeclaredConstructor().newInstance();
             try (Connection conn = DriverManager.getConnection(url, username, password)) {
 
-                String sql = "INSERT INTO products (name, size, weight) Values (?, ?)";
+                String sql = "INSERT INTO products (name, size, weight) Values (?, ?, ?)";
                 try (PreparedStatement preparedStatement = conn.prepareStatement(sql)) {
                     preparedStatement.setString(1, product.getName());
                     preparedStatement.setString(2, product.getSize());

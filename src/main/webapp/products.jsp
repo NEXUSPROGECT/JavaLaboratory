@@ -16,6 +16,7 @@
     <th>Наименование</th>
     <th>Размер</th>
     <th>Вес (кг)</th>
+    <th></th>
   </tr>
   <%
     List<Product> products = (List<Product>) request.getAttribute("products");
@@ -26,9 +27,12 @@
     <td><%= product.getName() %></td>
     <td><%= product.getSize() %></td>
     <td><%= product.getWeight() %></td>
+    <td><a href="<%= request.getContextPath() %>/productsEdit?id=<%= product.getId() %>">Редактировать</a></td>
+
   </tr>
   <% } %>
 </table>
+<a href="productsAdd">Добавить</a>
 <a href="index.jsp">На главную</a>
 </body>
 </html>

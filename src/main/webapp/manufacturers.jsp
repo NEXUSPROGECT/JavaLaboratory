@@ -17,6 +17,7 @@
         <th>Страна</th>
         <th>Контактное лицо</th>
         <th>Телефон</th>
+        <th></th>
     </tr>
     <%
         List<Manufacturer> manufacturers = (List<Manufacturer>) request.getAttribute("manufacturers");
@@ -28,9 +29,12 @@
         <td><%= manufacturer.getCountry() %></td>
         <td><%= manufacturer.getContactPerson() %></td>
         <td><%= manufacturer.getPhone()%></td>
+        <td><a href="<%= request.getContextPath() %>/manufacturersEdit?id=<%= manufacturer.getId() %>">Редактировать</a></td>
+
     </tr>
     <% } %>
 </table>
+<a href="manufacturersAdd">Добавить</a>
 <a href="index.jsp">На главную</a>
 </body>
 </html>
